@@ -8,9 +8,8 @@ module HelperMethods
 
   def drag_and_drop
     @driver.navigate.to 'https://the-internet.herokuapp.com/drag_and_drop'
-    @source = @driver.find_element(:id, 'column-a')
-    @target = @driver.find_element(:id, 'column-b')
-    @driver.action.drag_and_drop(@target, @source).perform
+    dnd_javascript = File.read(Dir.pwd + '/dnd.js')
+    @driver.execute_script(dnd_javascript+"$('#column-a').simulateDragDrop({ dropTarget: '#column-b'});")
   end
 
   def select_list(option_text)

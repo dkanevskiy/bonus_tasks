@@ -18,8 +18,10 @@ class TestBonusTasks < Test::Unit::TestCase
 
   def test_drag_and_drop
     drag_and_drop
-    assert_equal(@source.text, 'B')
-    assert_equal(@target.text, 'A')
+    source = @driver.find_element(id: 'column-a').text
+    target = @driver.find_element(id: 'column-b').text
+    assert_equal(source, 'B')
+    assert_equal(target, 'A')
   end
 
   def test_select_list
